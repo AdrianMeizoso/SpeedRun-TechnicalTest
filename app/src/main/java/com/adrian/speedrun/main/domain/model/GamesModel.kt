@@ -1,4 +1,4 @@
-package com.adrian.speedrun.main.domain
+package com.adrian.speedrun.main.domain.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -11,7 +11,8 @@ data class GamesResponse(
 data class GameInfo(
     val id: String,
     val names: GameNames,
-    val assets: GameAssets)
+    val assets: GameAssets
+)
 
 @JsonClass(generateAdapter = true)
 data class GameNames(
@@ -21,7 +22,8 @@ data class GameNames(
 
 @JsonClass(generateAdapter = true)
 data class GameAssets(
-    @Json(name = "cover-large") val coverLarge: GameAsset)
+    @Json(name = "cover-large") val coverLarge: GameAsset
+)
 
 @JsonClass(generateAdapter = true)
 data class GameAsset(

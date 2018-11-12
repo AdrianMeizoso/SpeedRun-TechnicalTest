@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.speedrun.R
 import com.adrian.speedrun.databinding.GameItemBinding
+import com.adrian.speedrun.main.domain.model.GameInfo
 
 class GamesViewHolder(private val binding: GameItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -26,7 +27,7 @@ class GamesViewHolder(private val binding: GameItemBinding) : RecyclerView.ViewH
         binding.executePendingBindings()
     }
 
-    fun onClickGame(view:View, game:GameInfo) {
+    fun onClickGame(view:View, game: GameInfo) {
         val bundleGame = bundleOf("game" to game.id)
         view.findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundleGame)
     }

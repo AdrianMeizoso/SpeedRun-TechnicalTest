@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="android.view.View"/>
-        <import type="com.adrian.speedrun.main.domain.GameInfo" />
+        <import type="com.adrian.speedrun.main.domain.model.GameInfo" />
         <import type="com.adrian.speedrun.main.domain.GamesViewHolder"/>
-        <variable name="game" type="GameInfo" />
+        <variable name="game" type="com.adrian.speedrun.main.domain.model.GameInfo" />
         <variable name="viewHolder" type="GamesViewHolder" />
     </data>
 

@@ -1,6 +1,7 @@
 package com.adrian.speedrun.main.domain
 
 import androidx.paging.PageKeyedDataSource
+import com.adrian.speedrun.main.domain.model.GameInfo
 import com.adrian.speedrun.main.usecase.GetGames
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

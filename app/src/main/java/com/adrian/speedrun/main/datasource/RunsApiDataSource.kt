@@ -1,6 +1,7 @@
 package com.adrian.speedrun.main.datasource
 
-import com.adrian.speedrun.main.domain.GamesResponse
+import com.adrian.speedrun.main.domain.model.GamesResponse
+import com.adrian.speedrun.main.domain.model.RunsResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -13,8 +14,8 @@ interface RunsApiDataSource {
             : Single<GamesResponse>
 
     @GET("runs")
-    fun getSpeedrun(@Query("game") gameId:String)
-            : Single<GamesResponse>
+    fun getSpeedruns(@Query("game") gameId:String)
+            : Single<RunsResponse>
 
     @GET("users/{idUser}")
     fun getUser(@Path("idUser") userId:String)

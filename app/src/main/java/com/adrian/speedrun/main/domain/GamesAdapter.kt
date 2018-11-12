@@ -3,6 +3,7 @@ package com.adrian.speedrun.main.domain
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.adrian.speedrun.main.domain.model.GameInfo
 
 class GamesAdapter : PagedListAdapter<GameInfo, GamesViewHolder>(gameInfoDiffCallback) {
 

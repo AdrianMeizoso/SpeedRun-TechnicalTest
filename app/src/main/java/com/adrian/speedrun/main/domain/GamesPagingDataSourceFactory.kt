@@ -2,6 +2,7 @@ package com.adrian.speedrun.main.domain
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
+import com.adrian.speedrun.main.domain.model.GameInfo
 import com.adrian.speedrun.main.usecase.GetGames
 import io.reactivex.disposables.CompositeDisposable
 

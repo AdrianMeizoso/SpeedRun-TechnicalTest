@@ -2,24 +2,22 @@ package com.adrian.speedrun.main.usecase
 
 import com.adrian.speedrun.main.datasource.RunsDataSource
 import com.adrian.speedrun.main.domain.model.GameInfo
+import com.adrian.speedrun.main.domain.model.RunData
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetGames @Inject constructor(private val runsRepository: RunsDataSource) {
+class GetSpeedRun @Inject constructor(private val runsRepository: RunsDataSource) {
 
-    var offset: Int = 0
-
-    fun execute(): Single<List<GameInfo>> {
+    fun execute(gameId:String): Single<RunData> {
         return runsRepository
-                .getGames(offset)
+                .getSpeedruns(gameId)
                 .flatMap {
-                    Single.just(it.gameInfoList)
+                    Single.just(it.runDataList.first())
                 }
                 .doOnError {
                     it.printStackTrace()
                 }
-                .doFinally { offset = 0 }
     }
 }

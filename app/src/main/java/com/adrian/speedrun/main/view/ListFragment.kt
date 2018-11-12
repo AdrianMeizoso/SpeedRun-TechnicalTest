@@ -12,7 +12,7 @@ import com.adrian.speedrun.R
 import com.adrian.speedrun.main.MainViewModel
 import com.adrian.speedrun.main.MainViewModelFactory
 import com.adrian.speedrun.main.domain.GamesAdapter
-import com.adrian.speedrun.main.domain.GameInfo
+import com.adrian.speedrun.main.domain.model.GameInfo
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
@@ -48,7 +48,7 @@ class ListFragment : DaggerFragment() {
         val gamesAdapter = GamesAdapter()
         games_recycler.layoutManager = linearLayoutManager
         games_recycler.adapter = gamesAdapter
-        mainViewModel.gamesList.observe(this, Observer<PagedList<GameInfo>> {
+        mainViewModel.gamesList.observe(this, Observer {
             gamesAdapter.submitList(it)
             it.toList().forEach { game ->
                 mainViewModel.gamesListHash[game.id] = game
