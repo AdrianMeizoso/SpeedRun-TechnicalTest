@@ -1,4 +1,4 @@
-package com.adrian.speedruns
+package com.adrian.speedrun
 
 import org.junit.Test
 

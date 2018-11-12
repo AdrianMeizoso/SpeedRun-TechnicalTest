@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.adrian.speedrun.main.domain.GameInfo" />
+        <variable name="game" type="GameInfo" />
+        <import type="com.adrian.speedrun.main.domain.GamesViewHolder"/>
+        <variable name="viewHolder" type="GamesViewHolder" />
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:onClick="@{(view) -> viewHolder.onClickGame(view, game)}">
+
+        <ImageView
+            android:id="@+id/game_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:imageUrl="@{`https://img.svet-deskovych-her.cz/p/ai_big/Trickerion-Hra.jpg`}"/>
+
+        <TextView
+            android:id="@+id/game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{game.names.international}"
+            android:textSize="@dimen/normal_text" />
+
+    </LinearLayout>
+</layout>
