@@ -7,9 +7,8 @@ import io.reactivex.Single
 
 class RunsRepository(private val runsApiDataSource: RunsApiDataSource) : RunsDataSource {
 
-    override fun getGames(offset: Int): Single<GamesResponse> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getGames(offset: Int): Single<GamesResponse> = runsApiDataSource.getGames(offset)
+
 
     override fun getSpeedrun(offset: Int): Single<GamesResponse> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

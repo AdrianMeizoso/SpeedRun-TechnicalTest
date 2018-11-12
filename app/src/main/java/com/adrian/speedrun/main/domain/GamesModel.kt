@@ -5,11 +5,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GamesResponse(
-        @Json(name = "data") val gamesData: GamesData)
-
-@JsonClass(generateAdapter = true)
-data class GamesData(
-        @Json(name = "results") val gameInfoList: List<GameInfo>)
+        @Json(name = "data") val gameInfoList: List<GameInfo>)
 
 @JsonClass(generateAdapter = true)
 data class GameInfo(
@@ -19,9 +15,9 @@ data class GameInfo(
 
 @JsonClass(generateAdapter = true)
 data class GameNames(
-    val international: String,
-    val japanese: String,
-    val twitch: String)
+    val international: String?,
+    val japanese: String?,
+    val twitch: String?)
 
 @JsonClass(generateAdapter = true)
 data class GameAssets(
@@ -29,4 +25,4 @@ data class GameAssets(
 
 @JsonClass(generateAdapter = true)
 data class GameAsset(
-    val uri: String)
+    val uri: String?)

@@ -15,7 +15,7 @@ class GetGames @Inject constructor(private val runsRepository: RunsDataSource) {
         return runsRepository
                 .getGames(offset)
                 .flatMap {
-                    Single.just(it.gamesData.gameInfoList)
+                    Single.just(it.gameInfoList)
                 }
                 .doOnError {
                     it.printStackTrace()
