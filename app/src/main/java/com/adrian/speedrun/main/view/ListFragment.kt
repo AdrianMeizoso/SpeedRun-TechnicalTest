@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.adrian.speedrun.R
 import com.adrian.speedrun.main.MainViewModel
 import com.adrian.speedrun.main.MainViewModelFactory
 import com.adrian.speedrun.main.domain.GamesAdapter
-import com.adrian.speedrun.main.domain.model.GameInfo
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
@@ -22,14 +20,10 @@ class ListFragment : DaggerFragment() {
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
 
-    lateinit var mainViewModel: MainViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mainViewModel = activity?.run {
+    private val mainViewModel: MainViewModel by lazy {
+        activity?.run {
             ViewModelProviders.of(this, mainViewModelFactory)
-                    .get(MainViewModel::class.java)
+                .get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
     }
 
@@ -50,9 +44,6 @@ class ListFragment : DaggerFragment() {
         games_recycler.adapter = gamesAdapter
         mainViewModel.gamesList.observe(this, Observer {
             gamesAdapter.submitList(it)
-            it.toList().forEach { game ->
-                mainViewModel.gamesListHash[game.id] = game
-            }
         })
     }
 }

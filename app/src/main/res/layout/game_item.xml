@@ -6,6 +6,7 @@
         <import type="com.adrian.speedrun.main.domain.model.GameInfo" />
         <import type="com.adrian.speedrun.main.domain.GamesViewHolder"/>
         <variable name="game" type="com.adrian.speedrun.main.domain.model.GameInfo" />
+        <variable name="elemPos" type="Integer" />
         <variable name="viewHolder" type="GamesViewHolder" />
     </data>
 
@@ -14,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="212dp"
         android:orientation="vertical"
-        android:onClick="@{(view) -> viewHolder.onClickGame(view, game)}">
+        android:onClick="@{(view) -> viewHolder.onClickGame(view, elemPos, game)}">
 
         <ImageView
             android:id="@+id/game_image"

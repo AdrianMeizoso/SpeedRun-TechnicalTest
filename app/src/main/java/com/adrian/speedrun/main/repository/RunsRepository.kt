@@ -4,6 +4,7 @@ import com.adrian.speedrun.main.datasource.RunsApiDataSource
 import com.adrian.speedrun.main.datasource.RunsDataSource
 import com.adrian.speedrun.main.domain.model.GamesResponse
 import com.adrian.speedrun.main.domain.model.RunsResponse
+import com.adrian.speedrun.main.domain.model.UserResponse
 import io.reactivex.Single
 
 class RunsRepository(private val runsApiDataSource: RunsApiDataSource) : RunsDataSource {
@@ -12,7 +13,5 @@ class RunsRepository(private val runsApiDataSource: RunsApiDataSource) : RunsDat
 
     override fun getSpeedruns(gameId: String): Single<RunsResponse> = runsApiDataSource.getSpeedruns(gameId)
 
-    override fun getUser(offset: Int): Single<GamesResponse> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getUser(userId: String): Single<UserResponse> = runsApiDataSource.getUser(userId)
 }

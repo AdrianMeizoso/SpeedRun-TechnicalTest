@@ -10,17 +10,22 @@ data class RunsResponse(
 @JsonClass(generateAdapter = true)
 data class RunData(
     val id: String,
-    val videos: RunVideos,
-    val times: RunTimes
+    val videos: RunVideos?,
+    val times: RunTimes?,
+    val players: List<RunPlayer>?
 )
 
 @JsonClass(generateAdapter = true)
 data class RunVideos(
-    val links: List<RunLink>)
+    val links: List<RunLink>?)
+
+@JsonClass(generateAdapter = true)
+data class RunPlayer(
+    val id: String?)
 
 @JsonClass(generateAdapter = true)
 data class RunLink(
-    val url: String?
+    val uri: String?
 )
 
 @JsonClass(generateAdapter = true)

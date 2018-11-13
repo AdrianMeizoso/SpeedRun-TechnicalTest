@@ -21,14 +21,15 @@ class GamesViewHolder(private val binding: GameItemBinding) : RecyclerView.ViewH
         }
     }
 
-    fun bind(game: GameInfo) {
+    fun bind(game: GameInfo, position: Int) {
         binding.game = game
+        binding.elemPos = position
         binding.viewHolder = this
         binding.executePendingBindings()
     }
 
-    fun onClickGame(view:View, game: GameInfo) {
-        val bundleGame = bundleOf("game" to game.id)
+    fun onClickGame(view:View, position: Int, game: GameInfo) {
+        val bundleGame = bundleOf("gameId" to game.id, "position" to position)
         view.findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundleGame)
     }
 

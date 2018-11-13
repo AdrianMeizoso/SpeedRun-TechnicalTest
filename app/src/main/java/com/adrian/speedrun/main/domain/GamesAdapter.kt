@@ -14,7 +14,7 @@ class GamesAdapter : PagedListAdapter<GameInfo, GamesViewHolder>(gameInfoDiffCal
     override fun onBindViewHolder(holder: GamesViewHolder, position: Int) {
         val game = getItem(position)
         if (game != null) {
-            holder.bind(game)
+            holder.bind(game, position)
         } else {
             holder.clear()
         }
