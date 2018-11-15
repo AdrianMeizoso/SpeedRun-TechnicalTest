@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.adrian.speedrun.R
+import com.adrian.speedrun.common.formattedTime
 import com.adrian.speedrun.common.setImageUrl
 import com.adrian.speedrun.main.MainViewModel
 import com.adrian.speedrun.main.MainViewModelFactory
@@ -54,6 +55,7 @@ class DetailFragment : DaggerFragment() {
         videoLink = ""
         game_name.text = getString(R.string.loading)
         user_name.text = getString(R.string.loading)
+        run_time.text = getString(R.string.loading)
     }
 
     override fun onCreateView(
@@ -66,6 +68,8 @@ class DetailFragment : DaggerFragment() {
 
     private fun setObservers() {
         mainViewModel.runData.observe(this, Observer {
+            run_time.text = it.times?.primary?.formattedTime ?: getString(R.string.no_text)
+
             it.videos?.links?.get(0)?.uri?.let {videoLinkData ->
                 video_button.isEnabled = true
                 videoLink = videoLinkData

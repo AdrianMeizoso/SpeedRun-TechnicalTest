@@ -14,3 +14,17 @@ fun ImageView.setImageUrl(url: String?) {
 val Int.dp: Int get() = (this / Resources.getSystem().displayMetrics.density).toInt()
 
 val Int.px: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+val String.formattedTime: String? get() {
+    val timeSplit = this
+        .substringAfter("PT")
+        .substringBefore("S")
+        .split("H", "M")
+
+    return when (timeSplit.size) {
+        1 -> "${timeSplit[0]}s"
+        2 -> "${timeSplit[0]}m ${timeSplit[1]}s"
+        3 -> "${timeSplit[0]}h ${timeSplit[1]}m ${timeSplit[2]}s"
+        else -> null
+    }
+}
