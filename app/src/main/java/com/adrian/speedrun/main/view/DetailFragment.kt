@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.adrian.speedrun.R
+import com.adrian.speedrun.common.injection.setImageUrl
 import com.adrian.speedrun.databinding.FragmentDetailBinding
 import com.adrian.speedrun.main.MainViewModel
 import com.adrian.speedrun.main.MainViewModelFactory
@@ -24,44 +25,19 @@ class DetailFragment : DaggerFragment() {
 
     lateinit var mainViewModel: MainViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private var videoLink: String = ""
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         mainViewModel = activity?.run {
             ViewModelProviders.of(this, mainViewModelFactory)
                 .get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
-    }
 
-    private var videoLink: String = ""
-
-    override fun onDetach() {
-        super.onDetach()
-        mainViewModel.runData = MutableLiveData()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-       return inflater.inflate(R.layout.fragment_detail, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        video_button.setOnClickListener {
-            if (videoLink.isNotEmpty()) {
-                val location = Uri.parse(videoLink)
-                val videoIntent = Intent(Intent.ACTION_VIEW, location)
-
-                val packageManager = activity?.packageManager
-                val activities = packageManager?.queryIntentActivities(videoIntent, 0)
-                val isIntentSafe = (activities?.size ?: 0) > 0
-
-                if (isIntentSafe) startActivity(videoIntent)
-            }
-        }
+        initAttributes()
+        setVideoButtonListener()
+        setObservers()
 
         val gameId = arguments?.getString("gameId")
         val gamePos = arguments?.getInt("position")
@@ -69,17 +45,53 @@ class DetailFragment : DaggerFragment() {
         gameId?.let { mainViewModel.getSpeedRunByGameId(it) }
 
         val game = gamePos?.let { mainViewModel.getGameByPos(it) }
-        game_name.text = game?.names?.international ?: ""
+        game_name.text = game?.names?.international ?: getString(R.string.no_text)
+        game_cover.setImageUrl(game?.assets?.coverLarge?.uri)
+    }
 
+    private fun initAttributes() {
+        mainViewModel.runData = MutableLiveData()
+        mainViewModel.userData = MutableLiveData()
+        videoLink = ""
+        game_name.text = getString(R.string.loading)
+        user_name.text = getString(R.string.loading)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_detail, container, false)
+    }
+
+    //Private methods
+
+    private fun setObservers() {
         mainViewModel.runData.observe(this, Observer {
-            videoLink = it.videos?.links?.get(0)?.uri ?: ""
+            it.videos?.links?.get(0)?.uri?.let {videoLinkData ->
+                video_button.isEnabled = true
+                videoLink = videoLinkData
+            }
+
             it.players?.get(0)?.id?.let { userId ->
                 mainViewModel.getUserById(userId)
-            }
+            } ?: run { user_name.text = getString(R.string.no_text) }
         })
 
         mainViewModel.userData.observe(this, Observer {
-            user_name.text = it.names.international ?: ""
+            user_name.text = it.names.international ?: getString(R.string.no_text)
         })
+    }
+
+    private fun setVideoButtonListener() {
+        video_button.setOnClickListener {
+            val location = Uri.parse(videoLink)
+            val videoIntent = Intent(Intent.ACTION_VIEW, location)
+
+            val packageManager = activity?.packageManager
+            val activities = packageManager?.queryIntentActivities(videoIntent, 0)
+            val isIntentSafe = (activities?.size ?: 0) > 0
+
+            if (isIntentSafe) startActivity(videoIntent)
+        }
     }
 }

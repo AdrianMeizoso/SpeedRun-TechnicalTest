@@ -32,10 +32,12 @@ class ListFragment : DaggerFragment() {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         initGamesRecycler()
     }
+
+    //Private methods
 
     private fun initGamesRecycler() {
         val linearLayoutManager = GridLayoutManager(context, 2)
