@@ -7,12 +7,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetGames @Inject constructor(private val runsRepository: RunsDataSource) {
+class GetGames @Inject constructor(private val runsDataSource: RunsDataSource) {
 
     var offset: Int = 0
 
     fun execute(): Single<List<GameInfo>> {
-        return runsRepository
+        return runsDataSource
                 .getGames(offset)
                 .flatMap {
                     Single.just(it.gameInfoList)

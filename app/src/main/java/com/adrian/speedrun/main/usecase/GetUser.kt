@@ -8,10 +8,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetUser @Inject constructor(private val runsRepository: RunsDataSource) {
+class GetUser @Inject constructor(private val runsDataSource: RunsDataSource) {
 
     fun execute(userId: String): Single<UserData> {
-        return runsRepository
+        return runsDataSource
                 .getUser(userId)
                 .flatMap {
                     Single.just(it.userData)

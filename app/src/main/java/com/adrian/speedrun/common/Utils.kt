@@ -1,9 +1,10 @@
-package com.adrian.speedrun.common.injection
+package com.adrian.speedrun.common
 
 import android.content.res.Resources
 import com.adrian.speedrun.R
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.adrian.speedrun.common.injection.GlideApp
 
 @BindingAdapter("imageUrl")
 fun ImageView.setImageUrl(url: String?) {

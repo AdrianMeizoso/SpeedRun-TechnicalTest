@@ -24,6 +24,10 @@ android {
     }
 }
 
+allOpen {
+    annotation('com.adrian.speedrun.common.Mockable')
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -72,6 +76,9 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //Mockito
+    testImplementation 'org.mockito:mockito-core:2.9.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'

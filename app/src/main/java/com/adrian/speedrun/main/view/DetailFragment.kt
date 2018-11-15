@@ -10,8 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.adrian.speedrun.R
-import com.adrian.speedrun.common.injection.setImageUrl
-import com.adrian.speedrun.databinding.FragmentDetailBinding
+import com.adrian.speedrun.common.setImageUrl
 import com.adrian.speedrun.main.MainViewModel
 import com.adrian.speedrun.main.MainViewModelFactory
 import dagger.android.support.DaggerFragment

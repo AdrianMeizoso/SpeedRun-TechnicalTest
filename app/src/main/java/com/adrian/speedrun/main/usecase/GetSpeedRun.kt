@@ -7,10 +7,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetSpeedRun @Inject constructor(private val runsRepository: RunsDataSource) {
+class GetSpeedRun @Inject constructor(private val runsDataSource: RunsDataSource) {
 
     fun execute(gameId:String): Single<RunData> {
-        return runsRepository
+        return runsDataSource
                 .getSpeedruns(gameId)
                 .flatMap {
                     if (it.runDataList.isEmpty()) {
