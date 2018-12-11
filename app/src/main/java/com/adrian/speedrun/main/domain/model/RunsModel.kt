@@ -30,4 +30,5 @@ data class RunLink(
 
 @JsonClass(generateAdapter = true)
 data class RunTimes(
-    val primary: String?)
+    val primary: String?,
+    val primary_t: Long)

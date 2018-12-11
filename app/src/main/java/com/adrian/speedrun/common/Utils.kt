@@ -1,5 +1,6 @@
 package com.adrian.speedrun.common
 
+import android.text.format.DateUtils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.adrian.speedrun.R
@@ -23,3 +24,5 @@ val String.formattedTime: String? get() {
         else -> null
     }
 }
+
+val Long.formattedTime: String? get() = DateUtils.formatElapsedTime(this)

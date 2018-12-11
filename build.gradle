@@ -17,6 +17,10 @@ buildscript {
 
 apply plugin: "kotlin-allopen"
 
+allOpen {
+    annotation('com.adrian.speedrun.common.Mockable')
+}
+
 allprojects {
     repositories {
         google()

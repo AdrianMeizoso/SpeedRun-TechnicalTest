@@ -68,7 +68,7 @@ class DetailFragment : DaggerFragment() {
 
     private fun setObservers() {
         mainViewModel.runData.observe(this, Observer {
-            run_time.text = it.times?.primary?.formattedTime ?: getString(R.string.no_text)
+            run_time.text = it.times?.primary_t?.formattedTime ?: getString(R.string.no_text)
 
             it.videos?.links?.get(0)?.uri?.let {videoLinkData ->
                 video_button.isEnabled = true
